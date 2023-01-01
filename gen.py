@@ -3,16 +3,18 @@ import subprocess
 
 subprocess.call("rm *.png", shell=True)
 
-with open("index.html", "w") as output:
-    print(
-        """
+CSS_RULES = """
 <style type="text/css">
 p {
   display: inline-block;
   padding-right: 20px;
 }
 </style>
-    """,
+"""
+
+with open("index.html", "w") as output:
+    print(
+        CSS_RULES,
         file=output,
     )
     for filename in sorted(os.listdir(".")):
@@ -30,24 +32,34 @@ p {
                 ]
             )
 
-            print(
-                f"""<h1>{name}</h1>
+            VIDEO_EMBED = f"""<h1>{name}</h1>
 <div>
             <video controls>
   <source src="{name}.mp4">
 </video>
 </div>
+            """
 
-            """,
-                file=output,
-            )
+            VIDEO_CONTENT = [VIDEO_EMBED]
+
             for png in pngs:
-                print(
+                VIDEO_CONTENT.append(
                     f"""<p>
 <img src="{png}">
 <br>
 {png}
 </p>
-""",
-                    file=output,
+"""
+                )
+
+            print(
+                "\n".join(VIDEO_CONTENT),
+                file=output,
+            )
+
+            with open(f"{name}.html", "w") as single_video_output:
+                print(CSS_RULES, file=single_video_output)
+                print(
+                    "\n".join(VIDEO_CONTENT),
+                    file=single_video_output,
                 )
