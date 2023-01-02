@@ -1,3 +1,19 @@
+<script>
+function setPlaybackRate(value) {
+  document.querySelectorAll('video').forEach(el => {
+    el.playbackRate = value;
+  });
+}
+</script>
+
+<input type="button" value="0.1x" onclick="setPlaybackRate(0.1)"/>
+
+<input type="button" value="0.25x" onclick="setPlaybackRate(0.25)"/>
+
+<input type="button" value="0.5x" onclick="setPlaybackRate(0.5)"/>
+
+<input type="button" value="1x" onclick="setPlaybackRate(1)"/>
+
 <h1>1_John_shoots_Frank</h1>
 <div><video controls><source src="./ILO4_Team1/1_John_shoots_Frank.mp4"></video></div>
 <a href="ILO4_Team1/1_John_shoots_Frank.html">1_John_shoots_Frank frames</a>
