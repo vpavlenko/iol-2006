@@ -21,8 +21,8 @@ with open("index.html", "w") as output:
         if filename.endswith(".mov"):
             print(filename)
             name = filename.split(".")[0]
-            subprocess.call(f"ffmpeg -i {filename} {name}.mp4", shell=True)
-            subprocess.call(f"ffmpeg -i {filename} {name}_%03d.png", shell=True)
+            subprocess.call(f"yes | ffmpeg -i {filename} {name}.mp4", shell=True)
+            subprocess.call(f"yes | ffmpeg -i {filename} {name}_%03d.png", shell=True)
 
             pngs = sorted(
                 [
